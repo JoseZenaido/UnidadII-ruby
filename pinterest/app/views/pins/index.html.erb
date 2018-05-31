@@ -1,0 +1,38 @@
+<h1>Listing Pins</h1>
+<div id="container">
+  
+  <div class="grid" data-masonry='{"itemSelector": ".grid-item", "columnWidth":190}'>
+    <% @pins.each do |pin| %>
+        <div class="grid-item" style="width:25%">
+          <div class="thumbnail">
+            <%= pin.name %>
+            <%= image_tag(pin.photo, :class => 'img-fluid') %>
+            <%=  pin.description %>
+            <div class="buttons" style="margin-top: 10px; margin-bottom: 10px">
+            <%= link_to 'Show', pin, :class => 'btn btn-success' %>
+            <%= link_to 'Edit', edit_pin_path(pin), :class => 'btn btn-info' %>
+            
+              <%= link_to 'Destroy', pin, method: :delete, :class => 'btn btn-warning', data: { confirm: 'Are you sure?' } %>
+          
+          </div>
+          </div>
+        </div>
+    <% end %>
+<br>
+
+<%= link_to 'New Pin', new_pin_path %>
+
+</div>
+
+<script type="text/javascript">
+  $('.grid').mansory({
+    itemSelector: '.grid-item',
+    columnWidth: 200
+  });
+  $(window).load(function(){
+    $(' .grid').masonry({
+      itemSelector: '.grid-item',
+      columnWidth: 200
+    });
+  })
+</script>
